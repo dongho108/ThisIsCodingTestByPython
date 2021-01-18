@@ -11,6 +11,7 @@ def solution(food_times, k):
     for i in range(len(food_times)):
         heapq.heappush(q, (food_times[i], i+1))
 
+
     sum_value = 0
     previous = 0
     length = len(food_times)
@@ -24,11 +25,10 @@ def solution(food_times, k):
         else:
             break
 
-    print(q)
     result = sorted(q, key=lambda x: x[1])
-    print(result)
 
     answer = result[(k-sum_value) % length][1]
     return answer
 
-print(solution([2, 3, 4], 8))
+# print(solution([3, 1, 2], 5))
+solution([3, 1, 2], 5)

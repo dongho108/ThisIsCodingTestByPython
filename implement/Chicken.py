@@ -1,8 +1,8 @@
 from itertools import combinations
 
 
-def Cal_distance():
-    return
+def Cal_distance(home, chicken):
+    return abs(home[0]-chicken[0]) + abs(home[1]-chicken[1])
 
 n, m = map(int, input().split())
 
@@ -11,21 +11,30 @@ chickenList = []
 homeList = []
 for i in range(n):
     city.append(list(map(int, input().split())))
-    for j in city[i]:
-        if j == 2:
+    for j in range(n):
+        if city[i][j] == 2:
             chickenList.append([i, j])
-        if j == 1:
+        if city[i][j] == 1:
             homeList.append([i, j])
 
 
 pickChickenList = list(combinations(chickenList, m))
-print(pickChickenList)
+# print(pickChickenList)
+# print(homeList)
 
-result = []
+results = []
+
 for pickChicken in pickChickenList:
-    semiresult = []
-    for chicken in pickChicken:
+    semiResult = 0
+    for home in homeList:
+        eachHome = []
+        for chicken in pickChicken:
+            # print(home, chicken)
+            eachHome.append(Cal_distance(home, chicken))
+        # print(f"eachHome = {eachHome}, min = {min(eachHome)}")
+        semiResult += min(eachHome)
+    results.append(semiResult)
 
-
-
+# print(results)
+print(min(results))
 
